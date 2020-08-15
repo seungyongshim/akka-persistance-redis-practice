@@ -1,18 +1,11 @@
 ﻿akka {
-    actor {
-        serialization-bindings {
-            "Akka.Persistence.Redis.Journal.JournalEntry, Akka.Persistence.Redis" = json
-            "Akka.Persistence.Redis.Snapshot.SnapshotEntry, Akka.Persistence.Redis" = json
-        }
-    }
-
     persistence {
         journal {
             plugin = "akka.persistence.journal.redis"
             redis {
                 class = "Akka.Persistence.Redis.Journal.RedisJournal, Akka.Persistence.Redis"
                 plugin-dispatcher = "akka.actor.default-dispatcher"
-                connection-string = "localhost:18000"
+                configuration-string = "localhost:6379,ssl=false"
                 
             }
         }
@@ -22,7 +15,7 @@
             redis {
                 class = "Akka.Persistence.Redis.Snapshot.RedisSnapshotStore, Akka.Persistence.Redis"
                 plugin-dispatcher = "akka.actor.default-dispatcher"
-                connection-string = "localhost:18000"
+                configuration-string = "localhost:6379,ssl=false"
                 
             }
         }
